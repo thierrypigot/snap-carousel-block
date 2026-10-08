@@ -38,7 +38,9 @@ describe( 'Group to carousel', () => {
 			anchor: 'combats',
 			className: 'is-style-foo',
 			backgroundColor: 'primary',
-			style: { spacing: { margin: { top: '2rem' }, padding: { top: '1rem' } } },
+			style: {
+				spacing: { margin: { top: '2rem' }, padding: { top: '1rem' } },
+			},
 		},
 		[ block( 'core/cover' ), block( 'core/group' ) ]
 	);
@@ -70,35 +72,43 @@ describe( 'Group to carousel', () => {
 	} );
 } );
 
-describe.each( [ 'core/query', 'core/gallery' ] )( '%s into a carousel', ( name ) => {
-	const result = from( name ).transform(
-		{
-			align: 'full',
-			anchor: 'actus',
-			queryId: 3,
-			style: { spacing: { margin: { top: '2rem' }, padding: { top: '1rem' } } },
-		},
-		[ block( 'core/post-template' ) ]
-	);
-	const inner = result.innerBlocks[ 0 ];
+describe.each( [ 'core/query', 'core/gallery' ] )(
+	'%s into a carousel',
+	( name ) => {
+		const result = from( name ).transform(
+			{
+				align: 'full',
+				anchor: 'actus',
+				queryId: 3,
+				style: {
+					spacing: {
+						margin: { top: '2rem' },
+						padding: { top: '1rem' },
+					},
+				},
+			},
+			[ block( 'core/post-template' ) ]
+		);
+		const inner = result.innerBlocks[ 0 ];
 
-	it( 'moves alignment, anchor and margin to the carousel', () => {
-		expect( result.attributes ).toEqual( {
-			align: 'full',
-			anchor: 'actus',
-			style: { spacing: { margin: { top: '2rem' } } },
+		it( 'moves alignment, anchor and margin to the carousel', () => {
+			expect( result.attributes ).toEqual( {
+				align: 'full',
+				anchor: 'actus',
+				style: { spacing: { margin: { top: '2rem' } } },
+			} );
 		} );
-	} );
 
-	it( 'leaves the rest on the inner block, without duplicating the anchor', () => {
-		expect( inner.name ).toBe( name );
-		expect( inner.attributes ).toEqual( {
-			queryId: 3,
-			style: { spacing: { padding: { top: '1rem' } } },
+		it( 'leaves the rest on the inner block, without duplicating the anchor', () => {
+			expect( inner.name ).toBe( name );
+			expect( inner.attributes ).toEqual( {
+				queryId: 3,
+				style: { spacing: { padding: { top: '1rem' } } },
+			} );
+			expect( inner.innerBlocks ).toHaveLength( 1 );
 		} );
-		expect( inner.innerBlocks ).toHaveLength( 1 );
-	} );
-} );
+	}
+);
 
 describe( 'ungroup', () => {
 	it( 'unwraps the slide blocks and keeps the direct slides', () => {

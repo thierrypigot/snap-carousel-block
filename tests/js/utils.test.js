@@ -52,7 +52,10 @@ describe( 'getStaticTiers', () => {
 
 	it( 'lists the tiers where every slide fits', () => {
 		expect( getStaticTiers( perView, 3 ) ).toEqual( [ 'desktop' ] );
-		expect( getStaticTiers( perView, 2 ) ).toEqual( [ 'desktop', 'tablet' ] );
+		expect( getStaticTiers( perView, 2 ) ).toEqual( [
+			'desktop',
+			'tablet',
+		] );
 		expect( getStaticTiers( perView, 1 ) ).toEqual( [
 			'desktop',
 			'tablet',
@@ -119,7 +122,9 @@ describe( 'isContentBlockType', () => {
 		'core/cover': { attributes: { url: { role: 'content' } } },
 		'core/group': { attributes: { tagName: {} } },
 		'wearewp/snap-carousel-slide': { supports: { contentRole: true } },
-		'legacy/block': { attributes: { text: { __experimentalRole: 'content' } } },
+		'legacy/block': {
+			attributes: { text: { __experimentalRole: 'content' } },
+		},
 	};
 
 	beforeEach( () => {
