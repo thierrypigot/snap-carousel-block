@@ -7,11 +7,12 @@
   "scripts": {
     "build": "wp-scripts build --experimental-modules --webpack-copy-php",
     "start": "wp-scripts start --experimental-modules --webpack-copy-php",
-    "lint:js": "wp-scripts lint-js src tests eslint.config.cjs",
+    "lint:js": "wp-scripts lint-js src tests tools eslint.config.cjs",
     "lint:css": "wp-scripts lint-style \"src/**/*.scss\"",
     "test": "npm run test:php && npm run test:js",
     "test:php": "php tests/php/run.php",
-    "test:js": "wp-scripts test-unit-js tests/js"
+    "test:js": "wp-scripts test-unit-js tests/js",
+    "release": "node tools/release.mjs"
   },
   "devDependencies": {
     "@wordpress/scripts": "^35.0.0"

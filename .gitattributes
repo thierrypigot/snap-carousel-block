@@ -8,3 +8,5 @@
 /package-lock.json export-ignore
 /tests export-ignore
 /eslint.config.cjs export-ignore
+/.github export-ignore
+/tools export-ignore

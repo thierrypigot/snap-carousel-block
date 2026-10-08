@@ -21,6 +21,17 @@ module.exports = [
 		},
 	},
 
+	// Command-line tools: run by Node, report on the console.
+	{
+		files: [ 'tools/**/*.mjs' ],
+		languageOptions: {
+			globals: { process: 'readonly' },
+		},
+		rules: {
+			'no-console': 'off',
+		},
+	},
+
 	// Front-end module: runs in the browser.
 	{
 		files: [ 'src/**/view.js' ],

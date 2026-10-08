@@ -59,3 +59,5 @@ Arrows and focus use CSS custom properties: `--snap-arrow-color`, `--snap-arrow-
 
 * `npm run test:php`: server render (slide detection and decoration in the three modes, static grid, arrows order, escaping, settings), with the real WordPress HTML API of the surrounding install (or `WP_CORE_DIR`), without PHPUnit nor database
 * `npm run test:js`: editor helpers and block transforms, with Jest
+
+Release: add the `= x.y.z =` entry at the top of the Changelog, then `npm run release -- patch` (or `minor`, `major`, `x.y.z`; `--dry-run` to simulate). It bumps the version everywhere (header, constant, Stable tag, package.json, block.json), builds, runs the tests, commits and tags `vx.y.z`. `git push origin main --follow-tags` then triggers the GitHub workflow, which checks the versions, runs the tests and publishes the release with the install zip `snap-carousel-block-x.y.z.zip`.
