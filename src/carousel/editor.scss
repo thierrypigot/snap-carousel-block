@@ -1,0 +1,19 @@
+/**
+ * Snap carousel: editor-only adjustments.
+ */
+
+.wp-block-wearewp-snap-carousel {
+	// Query Loop and Gallery scroll their own list: the inner blocks wrapper steps aside.
+	.snap-carousel__inner {
+		display: contents;
+	}
+
+	// Grid mode: the appender takes its own row (no effect in flex mode).
+	.snap-carousel__track > .block-list-appender {
+		flex: 0 0 auto;
+		grid-column: 1 / -1;
+		align-self: center;
+		width: auto;
+		scroll-snap-align: end;
+	}
+}

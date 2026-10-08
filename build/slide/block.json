@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wearewp/snap-carousel-slide",
+  "version": "1.0.0",
+  "title": "Carousel slide",
+  "category": "design",
+  "parent": [
+    "wearewp/snap-carousel"
+  ],
+  "description": "Wrap any blocks into a single carousel slide. Needed for slides made of groups or columns inside a locked pattern.",
+  "keywords": [
+    "slide",
+    "carousel"
+  ],
+  "textdomain": "snap-carousel-block",
+  "supports": {
+    "html": false,
+    "contentRole": true,
+    "reusable": false,
+    "layout": {
+      "allowSwitching": false,
+      "default": {
+        "type": "flex",
+        "orientation": "vertical",
+        "verticalAlignment": "top"
+      }
+    },
+    "spacing": {
+      "padding": true,
+      "blockGap": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css"
+}

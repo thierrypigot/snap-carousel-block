@@ -1,0 +1,270 @@
+/**
+ * Snap carousel: front-end and editor styles.
+ *
+ * Tiers follow the width of the carousel itself (container queries), not
+ * the viewport: a carousel sharing a row keeps the right density.
+ * Themes can restyle the arrows and focus through the --snap-* properties.
+ */
+
+// Container widths, not viewport widths: a carousel next to a 25 % column
+// in an 1120 px row is about 840 px wide and must stay in the desktop tier.
+$tablet-min: 480px;
+$desktop-min: 768px;
+
+// The scrolling element: our own track, or the list of a Query Loop / Gallery.
+$track: ".snap-carousel__track, &.is-mode-query .wp-block-post-template, &.is-mode-gallery .wp-block-gallery";
+
+// Scoped to one tier of the carousel.
+@mixin tier($tier) {
+	@if $tier == mobile {
+		@container snap-carousel (max-width: #{$tablet-min - 0.02px}) {
+			@content;
+		}
+	} @else if $tier == tablet {
+		@container snap-carousel (min-width: #{$tablet-min}) and (max-width: #{$desktop-min - 0.02px}) {
+			@content;
+		}
+	} @else {
+		@container snap-carousel (min-width: #{$desktop-min}) {
+			@content;
+		}
+	}
+}
+
+.wp-block-wearewp-snap-carousel {
+	--snap-gap: 1.5rem;
+	--snap-fade: 0.3; // Share of a slide width.
+	--snap-nav-gap: 1rem;
+	--snap-arrow-size: 2.75rem;
+	--snap-arrow-color: currentcolor;
+	--snap-arrow-bg: transparent;
+	--snap-focus-color: currentcolor;
+
+	container: snap-carousel / inline-size;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: var(--snap-nav-gap);
+	box-sizing: border-box;
+	// Size containment gives no intrinsic width: fill the row or the column.
+	width: 100%;
+	min-width: 0;
+
+	#{$track} {
+		--snap-pv: var(--snap-pv-m, 1.15);
+		--snap-gaps: var(--snap-gaps-m, 1);
+		--snap-slide-w: calc((100% - var(--snap-gaps) * var(--snap-gap)) / var(--snap-pv));
+		// Never wider than the peek (3.3 visible: 0.3 of a slide; 3 visible: one slide).
+		--snap-fade-len: calc(var(--snap-slide-w) * min(var(--snap-fade), var(--snap-pv) - var(--snap-gaps)));
+		--snap-fade-s: 0px;
+		--snap-fade-e: 0px;
+
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		gap: var(--snap-gap);
+		box-sizing: border-box;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		overflow-x: auto;
+		overflow-y: hidden;
+		overscroll-behavior-x: contain;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		mask-image: linear-gradient(to right, transparent 0, #000 var(--snap-fade-s), #000 calc(100% - var(--snap-fade-e)), transparent 100%);
+
+		&:dir(rtl) {
+			mask-image: linear-gradient(to left, transparent 0, #000 var(--snap-fade-s), #000 calc(100% - var(--snap-fade-e)), transparent 100%);
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		> * {
+			flex: 0 0 var(--snap-slide-w);
+			box-sizing: border-box;
+			width: auto;
+			min-width: 0;
+			max-width: none;
+			margin: 0;
+			scroll-snap-align: start;
+		}
+	}
+
+	// The mask would hide an outline drawn on the track: draw it on the carousel.
+	&:has(.snap-carousel__track:focus-visible) {
+		outline: 2px solid var(--snap-focus-color);
+		outline-offset: 4px;
+	}
+
+	// Fades, removed at the matching edge by the script.
+	&.has-fade-start .snap-carousel__track:not([data-at-start]) {
+		--snap-fade-s: var(--snap-fade-len);
+	}
+
+	&.has-fade-end .snap-carousel__track:not([data-at-end]) {
+		--snap-fade-e: var(--snap-fade-len);
+	}
+
+	// Arrows replace the scrollbar; without them, keep a thin one.
+	#{$track} {
+		scrollbar-width: thin;
+	}
+
+	&.has-arrows {
+		#{$track} {
+			scrollbar-width: none;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+	}
+
+	// Gallery: images become slides, the caption stays below.
+	&.is-mode-gallery .wp-block-gallery.has-nested-images {
+		figure.wp-block-image:not(#individual-image) {
+			flex: 0 0 var(--snap-slide-w);
+			width: auto;
+			margin: 0;
+		}
+
+		> figcaption {
+			position: absolute;
+			inset-inline: 0;
+			bottom: 0;
+			margin: 0;
+		}
+	}
+
+	&.is-mode-gallery:has(.blocks-gallery-caption) {
+		padding-bottom: 3em;
+	}
+
+	@include tier(tablet) {
+		#{$track} {
+			--snap-pv: var(--snap-pv-t, 2.2);
+			--snap-gaps: var(--snap-gaps-t, 2);
+		}
+	}
+
+	@include tier(desktop) {
+		#{$track} {
+			--snap-pv: var(--snap-pv-d, 3.3);
+			--snap-gaps: var(--snap-gaps-d, 3);
+		}
+	}
+
+	// Every slide fits in this tier: plain grid, no arrows, no fade.
+	@each $tier in (mobile, tablet, desktop) {
+		@include tier($tier) {
+			&.is-static-#{$tier} {
+				#{$track} {
+					display: grid;
+					grid-template-columns: repeat(var(--snap-count, 1), minmax(0, 1fr));
+					overflow: visible;
+					mask-image: none;
+				}
+
+				.snap-carousel__nav {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+// Navigation.
+.snap-carousel__nav {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5rem;
+
+	&[hidden],
+	.wp-block-wearewp-snap-carousel:not(.is-scrollable) > & {
+		display: none;
+	}
+
+	.has-arrows-bottom-end > & {
+		order: 2;
+	}
+
+	.has-arrows-sides > & {
+		--snap-arrow-bg: #fff;
+		--snap-arrow-color: #1e1e1e;
+
+		position: absolute;
+		z-index: 2;
+		inset: 0;
+		align-items: center;
+		justify-content: space-between;
+		padding-inline: 0.5rem;
+		pointer-events: none;
+	}
+}
+
+.snap-carousel__prev,
+.snap-carousel__next {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	inline-size: var(--snap-arrow-size);
+	block-size: var(--snap-arrow-size);
+	margin: 0;
+	padding: 0;
+	border: 2px solid currentcolor;
+	border-radius: 50%;
+	color: var(--snap-arrow-color);
+	background: var(--snap-arrow-bg);
+	cursor: pointer;
+	pointer-events: auto;
+	transition: opacity 0.2s ease;
+
+	&[aria-disabled="true"] {
+		opacity: 0.4;
+		cursor: default;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--snap-focus-color);
+		outline-offset: 2px;
+	}
+
+	svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	&:dir(rtl) svg {
+		transform: scaleX(-1);
+	}
+}
+
+.snap-carousel__sr {
+	position: absolute !important; // Must win over any theme rule on <p> or <span>.
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-wearewp-snap-carousel {
+		#{$track} {
+			scroll-behavior: auto;
+		}
+	}
+
+	.snap-carousel__prev,
+	.snap-carousel__next {
+		transition: none;
+	}
+}

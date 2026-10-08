@@ -1,0 +1,16 @@
+{
+  "name": "snap-carousel-block",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Accessible horizontal carousel block for WordPress: CSS scroll-snap, keyboard navigation, zero dependency.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "wp-scripts build --experimental-modules --webpack-copy-php",
+    "start": "wp-scripts start --experimental-modules --webpack-copy-php",
+    "lint:js": "wp-scripts lint-js src",
+    "lint:css": "wp-scripts lint-style \"src/**/*.scss\""
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^35.0.0"
+  }
+}

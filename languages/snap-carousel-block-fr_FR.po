@@ -1,0 +1,214 @@
+# Copyright (C) 2026 WeAre[WP]
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Snap Carousel Block 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snap-carousel-block\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Français\n"
+"MIME-Version: 1.0\n"
+"Language: fr_FR\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-08T11:42:42+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: snap-carousel-block\n"
+
+#. Plugin Name of the plugin
+#: snap-carousel-block.php
+msgid "Snap Carousel Block"
+msgstr "Snap Carousel Block"
+
+#. Description of the plugin
+#: snap-carousel-block.php
+msgid "Accessible horizontal carousel block: every block placed inside becomes a slide, Query Loop and Gallery included. CSS scroll-snap, keyboard navigation, ARIA, zero dependency."
+msgstr "Bloc de carrousel horizontal accessible : chaque bloc placé à l’intérieur devient une diapositive, Boucle de requête et Galerie comprises. CSS scroll-snap, navigation au clavier, ARIA, zéro dépendance."
+
+#. Author of the plugin
+#: snap-carousel-block.php
+msgid "WeAre[WP]"
+msgstr "WeAre[WP]"
+
+#. Author URI of the plugin
+#: snap-carousel-block.php
+msgid "https://www.wearewp.pro"
+msgstr "https://www.wearewp.pro"
+
+#: includes/class-wearewp-snapcarousel-block.php:226
+msgid "Carousel"
+msgstr "Carrousel"
+
+#. translators: 1: current slide number, 2: total slides.
+#: includes/class-wearewp-snapcarousel-block.php:230
+msgid "Slide %1$d of %2$d"
+msgstr "Diapositive %1$d sur %2$d"
+
+#. translators: 1: first visible slide, 2: last visible slide, 3: total slides.
+#: includes/class-wearewp-snapcarousel-block.php:232
+msgid "Slides %1$d to %2$d of %3$d"
+msgstr "Diapositives %1$d à %2$d sur %3$d"
+
+#: includes/class-wearewp-snapcarousel-block.php:241
+msgctxt "aria-roledescription of the carousel region"
+msgid "carousel"
+msgstr "carrousel"
+
+#: includes/class-wearewp-snapcarousel-block.php:384
+#: build/carousel/index.js:1
+msgid "Previous slides"
+msgstr "Diapositives précédentes"
+
+#: includes/class-wearewp-snapcarousel-block.php:385
+#: build/carousel/index.js:1
+msgid "Next slides"
+msgstr "Diapositives suivantes"
+
+#: includes/class-wearewp-snapcarousel-block.php:479
+msgctxt "aria-roledescription of a carousel slide"
+msgid "slide"
+msgstr "diapositive"
+
+#. translators: 1: slide number, 2: total slides.
+#: includes/class-wearewp-snapcarousel-block.php:481
+msgid "%1$d of %2$d"
+msgstr "%1$d sur %2$d"
+
+#: build/carousel/index.js:1
+msgid "Slide content…"
+msgstr "Contenu de la diapositive…"
+
+#: build/carousel/index.js:1
+msgid "Desktop"
+msgstr "Ordinateur"
+
+#: build/carousel/index.js:1
+msgid "Tablet"
+msgstr "Tablette"
+
+#: build/carousel/index.js:1
+msgid "Mobile"
+msgstr "Mobile"
+
+#: build/carousel/index.js:1
+msgid "Display"
+msgstr "Affichage"
+
+#: build/carousel/index.js:1
+msgid "Visible slides. A decimal value lets the next slide peek out. When every slide fits, the carousel becomes a plain grid."
+msgstr "Diapositives visibles. Une valeur décimale laisse dépasser la diapositive suivante. Quand toutes les diapositives tiennent, le carrousel devient une simple grille."
+
+#: build/carousel/index.js:1
+msgid "Fade"
+msgstr "Voile"
+
+#: build/carousel/index.js:1
+msgid "Fade the end while slides remain"
+msgstr "Voiler la fin tant qu’il reste des diapositives"
+
+#: build/carousel/index.js:1
+msgid "Fade the start once scrolled"
+msgstr "Voiler le début après défilement"
+
+#: build/carousel/index.js:1
+msgid "Fade width"
+msgstr "Largeur du voile"
+
+#: build/carousel/index.js:1
+msgid "Small"
+msgstr "Petit"
+
+#: build/carousel/index.js:1
+msgid "Medium"
+msgstr "Moyen"
+
+#: build/carousel/index.js:1
+msgid "Large"
+msgstr "Grand"
+
+#: build/carousel/index.js:1
+msgid "Navigation"
+msgstr "Navigation"
+
+#: build/carousel/index.js:1
+msgid "Show arrows"
+msgstr "Afficher les flèches"
+
+#: build/carousel/index.js:1
+msgid "Without arrows, a thin scrollbar stays visible."
+msgstr "Sans flèches, une fine barre de défilement reste visible."
+
+#: build/carousel/index.js:1
+msgid "Arrows position"
+msgstr "Position des flèches"
+
+#: build/carousel/index.js:1
+msgid "Top, end"
+msgstr "En haut, à la fin"
+
+#: build/carousel/index.js:1
+msgid "Bottom, end"
+msgstr "En bas, à la fin"
+
+#: build/carousel/index.js:1
+msgid "On both sides"
+msgstr "De chaque côté"
+
+#: build/carousel/index.js:1
+msgid "Accessibility"
+msgstr "Accessibilité"
+
+#: build/carousel/index.js:1
+msgid "Carousel name"
+msgstr "Nom du carrousel"
+
+#: build/carousel/index.js:1
+msgid "Describes the carousel for screen readers, for example: Our causes."
+msgstr "Décrit le carrousel pour les lecteurs d’écran, par exemple : Nos combats."
+
+#: build/carousel/block.json
+msgctxt "block title"
+msgid "Snap carousel"
+msgstr "Carrousel défilant"
+
+#: build/carousel/block.json
+msgctxt "block description"
+msgid "Display any blocks placed inside as an accessible horizontal carousel. Also works with a single Query Loop or Gallery."
+msgstr "Affiche tous les blocs placés à l’intérieur dans un carrousel horizontal accessible. Fonctionne aussi avec une seule Boucle de requête ou Galerie."
+
+#: build/carousel/block.json
+#: build/slide/block.json
+msgctxt "block keyword"
+msgid "carousel"
+msgstr "carrousel"
+
+#: build/carousel/block.json
+msgctxt "block keyword"
+msgid "slider"
+msgstr "slider"
+
+#: build/carousel/block.json
+msgctxt "block keyword"
+msgid "slideshow"
+msgstr "diaporama"
+
+#: build/carousel/block.json
+msgctxt "block keyword"
+msgid "scroll"
+msgstr "défilement"
+
+#: build/slide/block.json
+msgctxt "block title"
+msgid "Carousel slide"
+msgstr "Diapositive de carrousel"
+
+#: build/slide/block.json
+msgctxt "block description"
+msgid "Wrap any blocks into a single carousel slide. Needed for slides made of groups or columns inside a locked pattern."
+msgstr "Regroupe des blocs dans une seule diapositive. Nécessaire pour les diapositives faites de groupes ou de colonnes dans une composition verrouillée."
+
+#: build/slide/block.json
+msgctxt "block keyword"
+msgid "slide"
+msgstr "diapositive"

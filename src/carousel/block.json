@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wearewp/snap-carousel",
+	"version": "1.0.0",
+	"title": "Snap carousel",
+	"category": "design",
+	"description": "Display any blocks placed inside as an accessible horizontal carousel. Also works with a single Query Loop or Gallery.",
+	"keywords": [ "carousel", "slider", "slideshow", "scroll" ],
+	"textdomain": "snap-carousel-block",
+	"attributes": {
+		"perView": {
+			"type": "object",
+			"default": {
+				"desktop": 3.3,
+				"tablet": 2.2,
+				"mobile": 1.15
+			}
+		},
+		"fadeStart": {
+			"type": "boolean",
+			"default": false
+		},
+		"fadeEnd": {
+			"type": "boolean",
+			"default": true
+		},
+		"fadeSize": {
+			"type": "string",
+			"enum": [ "small", "medium", "large" ],
+			"default": "medium"
+		},
+		"showArrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"arrowsPosition": {
+			"type": "string",
+			"enum": [ "top-end", "bottom-end", "sides" ],
+			"default": "top-end"
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"align": [ "wide", "full" ],
+		"html": false,
+		"contentRole": true,
+		"listView": true,
+		"allowedBlocks": true,
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./view.js",
+	"render": "file:./render.php"
+}

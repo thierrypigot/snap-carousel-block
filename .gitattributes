@@ -1,0 +1,8 @@
+# Exclus des archives de déploiement (npm run release, git archive).
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/languages/*.pot export-ignore
+/src export-ignore
+/docs export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore
