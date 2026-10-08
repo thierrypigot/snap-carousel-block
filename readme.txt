@@ -52,3 +52,10 @@ Arrows and focus use CSS custom properties: `--snap-arrow-color`, `--snap-arrow-
 
 = 1.0.0 =
 * Initial release
+
+== Development ==
+
+`npm run build` compiles `src/` into `build/`. `npm test` runs both suites:
+
+* `npm run test:php`: server render (slide detection and decoration in the three modes, static grid, arrows order, escaping, settings), with the real WordPress HTML API of the surrounding install (or `WP_CORE_DIR`), without PHPUnit nor database
+* `npm run test:js`: editor helpers and block transforms, with Jest
